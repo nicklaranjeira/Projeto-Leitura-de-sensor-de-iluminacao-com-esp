@@ -1,15 +1,13 @@
-# 🌡️ ESP32 Web Server - Leitura de Temperatura com LM35
+# 🌐 ESP32 Web Server - Controle de LED
 
-Este projeto utiliza o ESP32 como um servidor web para ler a temperatura de um sensor LM35 e disponibilizar o valor em tempo real via navegador.
-
----
+Este projeto utiliza o ESP32 como servidor web para controlar um LED remotamente através do navegador.
 
 ## 📌 Funcionalidades
 
-* 🌡️ Leitura de temperatura com sensor LM35
-* 🌐 Servidor web rodando no ESP32
-* 📡 Acesso remoto via navegador
-* ⚡ Retorno da temperatura em texto simples (HTTP)
+* 🔛 Ligar o LED
+* ⛔ Desligar o LED
+* 🔁 Fazer o LED piscar
+* 🌍 Acesso via navegador (HTTP)
 
 ---
 
@@ -25,12 +23,79 @@ Este projeto utiliza o ESP32 como um servidor web para ler a temperatura de um s
 ## ⚙️ Hardware Necessário
 
 * 1x ESP32
-* 1x Sensor LM35
+* 1x LED (ou usar o LED onboard)
+* 1x Resistor (220Ω recomendado)
 * Jumpers
 
 ---
 
 ## 🔌 Esquema de Ligação
 
-![images (4)](https://github.com/user-attachments/assets/d17f87c8-ad92-4bbc-91a3-54f6a107b8c9)
+* LED positivo → GPIO 2 do ESP32
+* LED negativo → Resistor → GND
 
+---
+
+## 🚀 Como Funciona
+
+O ESP32 se conecta a uma rede Wi-Fi e cria um servidor HTTP na porta 80.
+
+Ao acessar diferentes rotas no navegador, o usuário pode controlar o LED:
+
+| Rota     | Ação             |
+| -------- | ---------------- |
+| `/on`    | Liga o LED       |
+| `/off`   | Desliga o LED    |
+| `/blink` | Faz o LED piscar |
+
+---
+
+## 🌐 Como Usar
+
+1. Configure o Wi-Fi no código:
+
+```cpp
+const char* ssid = "SEU_WIFI";
+const char* password = "SUA_SENHA";
+```
+
+2. Faça upload do código para o ESP32
+
+3. Abra o Monitor Serial e copie o IP exibido:
+
+```
+IP ESP:
+192.168.X.X
+```
+
+4. Acesse no navegador:
+
+* http://IP_DO_ESP/on
+* http://IP_DO_ESP/off
+* http://IP_DO_ESP/blink
+
+---
+
+## 📂 Estrutura do Projeto
+
+```
+📁 projeto
+ ┣ 📄 main.cpp
+ ┣ 📄 platformio.ini (se estiver usando PlatformIO)
+```
+
+---
+
+## ⚠️ Observações
+
+* O modo "piscar" utiliza `delay()`, o que pode bloquear temporariamente o servidor.
+* Para aplicações mais avançadas, recomenda-se o uso de `millis()`.
+
+---
+
+
+---
+
+## 👩‍💻 Autora
+
+Projeto desenvolvido por Nicolle Laranjeira 🚀
