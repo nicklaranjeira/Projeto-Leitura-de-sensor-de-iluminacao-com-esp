@@ -76,15 +76,6 @@ IP ESP:
 
 ---
 
-## 📂 Estrutura do Projeto
-
-```
-📁 projeto
- ┣ 📄 main.cpp
- ┣ 📄 platformio.ini (se estiver usando PlatformIO)
-```
-
----
 
 ## ⚠️ Observações
 
@@ -98,4 +89,4 @@ IP ESP:
 
 ## 👩‍💻 Autora
 
-Projeto desenvolvido por Nicolle Laranjeira 🚀
+Projeto desenvolvido por Nicolle Laranjeira 
