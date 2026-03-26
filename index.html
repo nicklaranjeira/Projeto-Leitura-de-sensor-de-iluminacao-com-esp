@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperatura</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #333;
+      font-size: 2em;
+    }
+    #temp {
+      color: #007bff;
+      font-size: 3em;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="temp">Carregando...</h1>
+
+<script>
+async function carregarTemp() {
+  try {
+    // Substitua ESP_IP pelo IP real do ESP32 (ex: 192.168.1.100)
+    const resposta = await fetch("http://ESP_IP/temp");
+    const dados = await resposta.text(); // ESP envia texto simples, não JSON
+    document.getElementById("temp").innerText = dados + " °C";
+  } catch (erro) {
+    console.error("Erro ao buscar temperatura:", erro);
+    document.getElementById("temp").innerText = "Erro ao carregar";
+  }
+}
+
+setInterval(carregarTemp, 2000);
+</script>
+
+</body>
+</html>
